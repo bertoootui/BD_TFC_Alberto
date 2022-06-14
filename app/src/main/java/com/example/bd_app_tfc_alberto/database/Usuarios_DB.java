@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.bd_app_tfc_alberto.clases.Usuario;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -94,5 +96,26 @@ public class Usuarios_DB extends SQLiteOpenHelper {
         Integer id = c.getInt(0);
         if(id == null) id =0;
         return c.getInt(0);
+    }
+
+    public Usuario getProfileData(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Usuario user = new Usuario();
+        Cursor c = db.rawQuery("SELECT nombre, tlfn FROM users WHERE email = ?",new String[]{email});
+        if(c.moveToFirst())
+        {
+            String nombre = c.getString(0);
+            int phone = c.getInt(1);
+            user = new Usuario(nombre,email,phone);
+        }
+        return user;
+    }
+
+    public void updateUser(String email,String nombre,int phone) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombre",nombre);
+        contentValues.put("tlfn",phone);
+        db.update(TABLE_NAME,contentValues,"email = ?",new String[]{email});
     }
 }

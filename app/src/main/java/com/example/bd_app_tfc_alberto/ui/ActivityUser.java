@@ -42,7 +42,7 @@ public class ActivityUser extends AppCompatActivity {
 
                         break;
                     case R.id.menu_profile:
-                        selectedFragment[0] = new ProfileFragment();
+                        selectedFragment[0] = new ProfileFragment(email);
                         nav.setSelected(true);
                         break;
 

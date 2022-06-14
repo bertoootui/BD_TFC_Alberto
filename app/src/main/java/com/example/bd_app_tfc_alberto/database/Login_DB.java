@@ -53,16 +53,16 @@ public class Login_DB extends SQLiteOpenHelper {
     public boolean registerUser(String email, String password)
     {
 
-
+        boolean regis = false;
         String password1 = md5(password);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         if(email.equals("root")) contentValues.put("type","Usuario");
         contentValues.put("email",email);
         contentValues.put("password",password1);
-
         db.insert(TABLE_NAME,null,contentValues);
-        return true;
+
+        return regis;
     }
 
     public String getLogin(String email, String password)
@@ -121,6 +121,13 @@ public class Login_DB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id_user",id_user);
+        db.update(TABLE_NAME,contentValues,"email = ?",new String[]{email});
+    }
+
+    public void updatePass(String email, String pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("password",md5(pass));
         db.update(TABLE_NAME,contentValues,"email = ?",new String[]{email});
     }
 }
