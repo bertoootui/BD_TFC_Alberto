@@ -14,6 +14,17 @@
     <string name="txtservicios">SERVICIOS</string>
     <string name="butreservar">RESERVAR</string>
     <string name="txtConfirm">Confirmación reserva</string>
-    <string name="txtempFC"></string>
+    <string name="txtempFC">Empleado</string>
+    <string name="txtdiaFc">Fecha</string>
+    <string name="txthoraFC">Hora</string>
+    <string name="txtprecioFc">Precio</string>
+    <string name="txtservicioFC">Servicio</string>
+    <string name="txtDialogdelte">Confirma para borrar la cita</string>
+    <string name="txtProfile">DATOS PERSONALES</string>
+    <string name="txtdatosP">Datos principales</string>
+    <string name="txtcambiarpass">Cambiar contraseña</string>
+    <string name="txtnombre">Nombre</string>
+    <string name="txtemail">Email</string>
+    <string name="txttlfn">Teléfono</string>
 
 </resources>

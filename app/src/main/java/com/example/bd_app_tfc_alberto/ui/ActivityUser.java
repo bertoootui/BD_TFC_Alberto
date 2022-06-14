@@ -37,8 +37,9 @@ public class ActivityUser extends AppCompatActivity {
                         nav.setSelected(true);
                         break;
                     case R.id.menu_calendar:
-                        selectedFragment[0] = new CalendarFragment();
+                        selectedFragment[0] = new CalendarFragment(email);
                         nav.setSelected(true);
+
                         break;
                     case R.id.menu_profile:
                         selectedFragment[0] = new ProfileFragment();

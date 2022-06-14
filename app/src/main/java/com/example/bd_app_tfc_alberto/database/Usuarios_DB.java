@@ -91,6 +91,8 @@ public class Usuarios_DB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT id FROM users WHERE email = ?",new String[]{email});
         c.moveToFirst();
+        Integer id = c.getInt(0);
+        if(id == null) id =0;
         return c.getInt(0);
     }
 }

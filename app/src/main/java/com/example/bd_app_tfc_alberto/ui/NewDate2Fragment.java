@@ -56,7 +56,7 @@ public class NewDate2Fragment extends Fragment {
         TextView txtprecio = view.findViewById(R.id.txtprecioFC);
         Button butback = view.findViewById(R.id.butback_fnd_2);
         CalendarView calendarView = view.findViewById(R.id.calendarnewdate);
-        Button butconfirm = view.findViewById(R.id.buteditFC);
+        Button butconfirm = view.findViewById(R.id.butdeleteFC);
         ConfigPreferences config = new ConfigPreferences();
 
         int id_emp = config.getEmpSel(getContext());
@@ -89,6 +89,9 @@ public class NewDate2Fragment extends Fragment {
                 else{
                     int id_user = usuarios_db.getIdUser(email);
                     citas_db.addDate(dia,hora,id_emp,config.getServSel(getContext()),id_user);
+                    Fragment fragment = new NewDateFragment(email);
+                    ((AppCompatActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+
                 }
             }
         });
@@ -106,7 +109,7 @@ public class NewDate2Fragment extends Fragment {
                 ArrayList<String>listatimeCt = citas_db.getTimes(date1[0],id_emp);
                 boolean firstrow = false;
                 boolean cfirstrow = false;
-                for(int i = 0;i<=listatime.size();i++)
+                for(int i = 0;i<listatime.size();i++)
                {
                    for(int x = 0; x<listatimeCt.size();x++)
                    {
@@ -115,19 +118,33 @@ public class NewDate2Fragment extends Fragment {
                            i = 0;
                            cfirstrow = true;
                        }
-                       if(listatime.size()==1){
-                           i = 0;
-                       }
+
                        if((listatime.get(i).getTime()).equals(listatimeCt.get(x))){
                            listatime.remove(i);
                            if(!firstrow)firstrow = true;
                            if(cfirstrow)cfirstrow =false;//cada vez que se borra un elemento, volvemos a la primera posición de listatimes con i= 0
                            i = 0;                       //y usamos dos variables booleanas para controlar la posicion de i dependiendo de si han sido borradas y
-                               break;                   //si ha sido resetado i
+                           break;                      //si ha sido resetado i
                        }
+                   }
+                   if(listatime.size()==1){
+                       i = 0;
                    }
 
                }
+                if(listatime.size()<=1) {
+
+                    for (int x = 0; x < listatimeCt.size(); x++) {
+
+
+                        if ((listatime.get(0).getTime()).equals(listatimeCt.get(x))) {
+                            listatime.remove(0);
+                            break;
+
+                        }
+
+                    }
+                }
                txtdias.setText("");
                txthoras.setText("");
                txtprecio.setText("");

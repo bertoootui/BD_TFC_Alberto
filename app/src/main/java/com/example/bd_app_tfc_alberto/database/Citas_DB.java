@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.bd_app_tfc_alberto.clases.Citas;
+
 import java.util.ArrayList;
 
 public class Citas_DB extends SQLiteOpenHelper {
@@ -70,5 +72,36 @@ public class Citas_DB extends SQLiteOpenHelper {
             }while (c.moveToNext());
         }
         return listatime;
+    }
+
+    public ArrayList<Citas> getCitas(String email,Context context,String date) {
+        ArrayList<Citas> listacitas = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Usuarios_DB usuarios_db = new Usuarios_DB(context);
+        int id_user = usuarios_db.getIdUser(email);
+        Cursor c = db.rawQuery("SELECT * FROM citas WHERE id_user = ? AND date = ?",new String[]{String.valueOf(id_user),date});
+        if(c.moveToFirst())
+        {
+            do{
+                int id =c.getInt(0);
+                String date1 = c.getString(2);
+                String time = c.getString(5);
+                int id_serv = c.getInt(4);
+                int id_emp = c.getInt(3);
+                Empleados_DB empleados_db = new Empleados_DB(context);
+                String empleado = empleados_db.getNameEmp(id_emp);
+                Servicios_DB servicios_db = new Servicios_DB(context);
+                String servicio = servicios_db.getServName(id_serv);
+                listacitas.add(new Citas(id,date1,time,servicio,empleado));
+
+
+            }while(c.moveToNext());
+        }
+        return listacitas;
+    }
+
+    public void deleteRow(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME,"id = ?",new String[]{String.valueOf(id)});
     }
 }
