@@ -19,6 +19,7 @@ import com.example.bd_app_tfc_alberto.clases.Horas;
 import com.example.bd_app_tfc_alberto.database.Servicios_DB;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHolder>{
 
@@ -27,6 +28,8 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
     String hora, fecha;
     private TextView txthoras,txtprecio,txtdias;
     private int id_serv;
+    int selpos = -1;
+    int lastselpos = -1;
 
 
     public RvHorasAdapter(Context context, ArrayList<Horas> listahoras, TextView txtdias, TextView txtprecio, TextView txthoras,String fecha,int id_serv)
@@ -55,37 +58,36 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
 
         holder.txthoras.setText(listahoras.get(position).getTime());
         ConfigPreferences configPreferences = new ConfigPreferences();
-        configPreferences.setHoraSel("00:00",context);
+
         Servicios_DB servicios_db = new Servicios_DB(context);
+
         holder.txthoras.setOnClickListener(new View.OnClickListener() {
             int cont = 0;
             @Override
             public void onClick(View view) {
-                hora = listahoras.get(position).getTime();
-                String precio = servicios_db.getPrecio(id_serv);
-                Log.i("hora",hora);
-                String hora2 = configPreferences.getHoraSel(context);
-                //ARRGLAR QUE NO SE PUEDA ESCOGER MÁS DE UNA HORA, HASTA AHORA LA HORA GURDADA ES SIEMPRE DISTINTO
-                // DE HORA Y DISTONTO DE 00:01, POR LO QUE SE SIGUEB PODIENDO ESGOGER MAS DE UNA HORA,
-                // ME CAGO EN LA PUTTTAAAAAAAAAAA!!!!!!! :)
-                if(!hora2.equals(hora) || !hora2.equals("00:00"))
-                {
-                    Toast.makeText(context, "No se puede elegir más de una hora", Toast.LENGTH_SHORT).show();
-                }else {
-                    if (cont == 0) {
 
+                int horapos = configPreferences.getHoraSel(context);
+                String precio = servicios_db.getPrecio(id_serv);
+                if(horapos == position || horapos == -1)
+                {
+                    if (cont == 0) {
+                        hora = listahoras.get(position).getTime();
                         holder.txthoras.setBackgroundResource(R.drawable.shape_txthoras_sel);
                         cont++;
                         txtdias.setText(fecha);
                         txthoras.setText(hora+"");
                         txtprecio.setText(precio);
-                        configPreferences.setHoraSel(hora, context);
+                        configPreferences.setHoraSel(position, context);
                     } else {
-
+                        configPreferences.setHoraSel(-1,context);
                         holder.txthoras.setBackgroundResource(R.drawable.shape_txthoras);
                         cont = 0;
 
                     }
+
+                }else {
+                    holder.txthoras.setBackgroundResource(R.drawable.shape_txthoras);
+
                 }
 
             }
@@ -114,5 +116,18 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
             super(itemView);
             txthoras = itemView.findViewById(R.id.txtcardhoras);
         }
+
+
+    }
+
+    public static ArrayList<Horas> deselectUser(ArrayList<Horas> listahoras, int position)
+    {
+        for(int i = 0; i< listahoras.size();i++)
+        {
+            listahoras.get(i).setSelect(false);
+        }
+        listahoras.get(position).setSelect(true);
+        return listahoras;
+
     }
 }

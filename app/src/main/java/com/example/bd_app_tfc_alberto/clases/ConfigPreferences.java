@@ -29,15 +29,15 @@ public class ConfigPreferences {
         return sharedpref.getInt("id_serv",-1);
     }
 
-    public String getHoraSel(Context context) {
+    public int getHoraSel(Context context) {
         SharedPreferences sharedpref = context.getSharedPreferences("CONFIG",Context.MODE_PRIVATE);
-        return sharedpref.getString("hora","00:00");
+        return sharedpref.getInt("hora",-1);
     }
 
-    public void setHoraSel(String hora,Context context) {
+    public void setHoraSel(int hora,Context context) {
         SharedPreferences sharedpref = context.getSharedPreferences("CONFIG",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpref.edit();
-        editor.putString("hora",hora);
+        editor.putInt("hora",hora);
         editor.commit();
     }
 }
