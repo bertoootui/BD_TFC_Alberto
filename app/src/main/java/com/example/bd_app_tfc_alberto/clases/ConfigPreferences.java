@@ -31,7 +31,7 @@ public class ConfigPreferences {
 
     public String getHoraSel(Context context) {
         SharedPreferences sharedpref = context.getSharedPreferences("CONFIG",Context.MODE_PRIVATE);
-        return sharedpref.getString("hora","00:01");
+        return sharedpref.getString("hora","00:00");
     }
 
     public void setHoraSel(String hora,Context context) {

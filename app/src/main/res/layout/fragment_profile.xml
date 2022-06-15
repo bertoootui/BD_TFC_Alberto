@@ -56,6 +56,7 @@
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textColor="#000000"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -162,6 +163,7 @@
                 android:hint="@string/hintPass"
                 android:inputType="textPassword"
                 android:padding="10dp"
+                android:textColor="#000000"
                 android:textColorHint="#8A8989"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -177,6 +179,7 @@
                 android:hint="@string/hintConfirmPas"
                 android:inputType="textPassword"
                 android:padding="10dp"
+                android:textColor="#000000"
                 android:textColorHint="#8A8989"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

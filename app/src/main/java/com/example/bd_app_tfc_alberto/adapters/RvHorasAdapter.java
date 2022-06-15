@@ -68,7 +68,7 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
                 //ARRGLAR QUE NO SE PUEDA ESCOGER MÁS DE UNA HORA, HASTA AHORA LA HORA GURDADA ES SIEMPRE DISTINTO
                 // DE HORA Y DISTONTO DE 00:01, POR LO QUE SE SIGUEB PODIENDO ESGOGER MAS DE UNA HORA,
                 // ME CAGO EN LA PUTTTAAAAAAAAAAA!!!!!!! :)
-                if(!hora2.equals(hora) && !hora2.equals("00:00"))
+                if(!hora2.equals(hora) || !hora2.equals("00:00"))
                 {
                     Toast.makeText(context, "No se puede elegir más de una hora", Toast.LENGTH_SHORT).show();
                 }else {
@@ -84,7 +84,7 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
 
                         holder.txthoras.setBackgroundResource(R.drawable.shape_txthoras);
                         cont = 0;
-                        configPreferences.setHoraSel("00:00", context);
+
                     }
                 }
 

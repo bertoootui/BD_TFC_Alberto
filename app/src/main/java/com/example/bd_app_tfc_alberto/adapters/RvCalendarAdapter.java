@@ -69,6 +69,7 @@ public class RvCalendarAdapter extends RecyclerView.Adapter<RvCalendarAdapter.Vi
                     Citas_DB citas_db = new Citas_DB(context);
                     citas_db.deleteRow(listacitas.get(position).getId());
                     notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,listacitas.size());
 
 
 

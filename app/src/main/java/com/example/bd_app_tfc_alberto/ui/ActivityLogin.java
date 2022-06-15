@@ -36,6 +36,9 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 regis = false;
+                edtconfirm.setVisibility(View.INVISIBLE);
+                butback.setVisibility(View.INVISIBLE);
+                butlogin.setVisibility(View.VISIBLE);
             }
         });
         butregis.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +52,7 @@ public class ActivityLogin extends AppCompatActivity {
                     {
                         edtconfirm.setVisibility(View.VISIBLE);
                         butlogin.setVisibility(View.INVISIBLE);
-                        butback.setVisibility(View.VISIBLE);
+
                     }
 
 
@@ -71,6 +74,7 @@ public class ActivityLogin extends AppCompatActivity {
                                 login_db.updateIdUser(id_user,email);
                                 edtconfirm.setVisibility(View.INVISIBLE);
                                 butlogin.setVisibility(View.VISIBLE);
+                                butback.setVisibility(View.INVISIBLE);
                             }else {
                                 Toast.makeText(ActivityLogin.this, "Usuario no válido", Toast.LENGTH_SHORT).show();
                             }
@@ -86,6 +90,7 @@ public class ActivityLogin extends AppCompatActivity {
                     regis = true;
                     edtconfirm.setVisibility(View.VISIBLE);
                     butlogin.setVisibility(View.INVISIBLE);
+                    butback.setVisibility(View.VISIBLE);
                 }
             }
         });

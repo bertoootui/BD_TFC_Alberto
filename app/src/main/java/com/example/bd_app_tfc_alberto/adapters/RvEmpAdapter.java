@@ -40,7 +40,8 @@ public class RvEmpAdapter extends RecyclerView.Adapter<RvEmpAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RvEmpAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+        ConfigPreferences config = new ConfigPreferences();
+        config.setEmpSel(context,-1);
         holder.txtemp.setText(listaemp.get(position).getNombre());
         switch (position)
         {
@@ -65,20 +66,24 @@ public class RvEmpAdapter extends RecyclerView.Adapter<RvEmpAdapter.ViewHolder> 
         int cont = 0;
             @Override
             public void onClick(View view) {
-                if(cont == 0)
-                {
-                    ConfigPreferences config = new ConfigPreferences();
-                    config.setEmpSel(context,position+1);
-                    holder.layout.setBackgroundResource(R.drawable.shape_emp_nosel);
-                    cont++;
 
-                }else
-                {
-                    ConfigPreferences config = new ConfigPreferences();
-                    config.setEmpSel(context,-1);
+                int id_user_sel = config.getEmpSel(context);
+                if(id_user_sel == position+1 || id_user_sel == -1) {
+                    if (cont == 0) {
+
+                        config.setEmpSel(context, position + 1);
+                        holder.layout.setBackgroundResource(R.drawable.shape_emp_nosel);
+                        cont++;
+
+                    } else {
+
+                        config.setEmpSel(context, -1);
+                        holder.layout.setBackgroundResource(R.drawable.shape_emp_sel);
+                        cont = 0;
+
+                    }
+                } else{
                     holder.layout.setBackgroundResource(R.drawable.shape_emp_sel);
-                    cont = 0;
-
                 }
 
             }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,26 @@ public class NewDate2Fragment extends Fragment {
         CalendarView calendarView = view.findViewById(R.id.calendarnewdate);
         Button butconfirm = view.findViewById(R.id.butdeleteFC);
         ConfigPreferences config = new ConfigPreferences();
+        ImageView imgfoto = view.findViewById(R.id.imgEmpND2);
+        int position = config.getEmpSel(getContext());
+        switch (position)
+        {
+            case 1:
+                imgfoto.setImageResource(R.drawable.empleado0);
+                break;
+            case 2:
+                imgfoto.setImageResource(R.drawable.empleado1);
+                break;
+            case 3:
+                imgfoto.setImageResource(R.drawable.empleado2);
+                break;
+            case 4:
+                imgfoto.setImageResource(R.drawable.empleado3);
+                break;
+            case 5:
+                imgfoto.setImageResource(R.drawable.empleado4);
+                break;
+        }
 
         int id_emp = config.getEmpSel(getContext());
         int id_serv = config.getServSel(getContext());
