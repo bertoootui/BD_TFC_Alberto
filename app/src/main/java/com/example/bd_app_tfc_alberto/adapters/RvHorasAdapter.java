@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bd_app_tfc_alberto.R;
 import com.example.bd_app_tfc_alberto.clases.ConfigPreferences;
 import com.example.bd_app_tfc_alberto.clases.Horas;
+import com.example.bd_app_tfc_alberto.database.Servicios_DB;
 
 import java.util.ArrayList;
 
@@ -25,9 +26,10 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
     private ArrayList<Horas> listahoras;
     String hora, fecha;
     private TextView txthoras,txtprecio,txtdias;
+    private int id_serv;
 
 
-    public RvHorasAdapter(Context context, ArrayList<Horas> listahoras, TextView txtdias, TextView txtprecio, TextView txthoras,String fecha)
+    public RvHorasAdapter(Context context, ArrayList<Horas> listahoras, TextView txtdias, TextView txtprecio, TextView txthoras,String fecha,int id_serv)
     {
         this.context = context;
         this.listahoras = listahoras;
@@ -35,6 +37,7 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
         this.txthoras = txthoras;
         this.txtprecio =txtprecio;
         this.fecha = fecha;
+        this.id_serv = id_serv;
 
     }
 
@@ -53,11 +56,13 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
         holder.txthoras.setText(listahoras.get(position).getTime());
         ConfigPreferences configPreferences = new ConfigPreferences();
         configPreferences.setHoraSel("00:00",context);
+        Servicios_DB servicios_db = new Servicios_DB(context);
         holder.txthoras.setOnClickListener(new View.OnClickListener() {
             int cont = 0;
             @Override
             public void onClick(View view) {
                 hora = listahoras.get(position).getTime();
+                String precio = servicios_db.getPrecio(id_serv);
                 Log.i("hora",hora);
                 String hora2 = configPreferences.getHoraSel(context);
                 //ARRGLAR QUE NO SE PUEDA ESCOGER MÁS DE UNA HORA, HASTA AHORA LA HORA GURDADA ES SIEMPRE DISTINTO
@@ -73,7 +78,7 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
                         cont++;
                         txtdias.setText(fecha);
                         txthoras.setText(hora+"");
-                        txtprecio.setText("15,00€");
+                        txtprecio.setText(precio);
                         configPreferences.setHoraSel(hora, context);
                     } else {
 

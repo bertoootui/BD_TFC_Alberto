@@ -63,11 +63,20 @@ public class Empleados_DB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         onUpgrade(db,1,1);
         ContentValues contentValues = new ContentValues();
-        for(int i = 0;i<5;i++)
-        {
-            contentValues.put("nombre","berto"+i);
+
+
+            contentValues.put("nombre","Berto");
             db.insert(TABLE_NAME,null,contentValues);
-        }
+
+        contentValues.put("nombre","Jose");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Ruben");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Carlos");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","David");
+        db.insert(TABLE_NAME,null,contentValues);
+
     }
 
     public ArrayList<Empleados> getEmpleados()

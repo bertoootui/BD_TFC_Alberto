@@ -46,12 +46,33 @@ public class Servicios_DB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         onUpgrade(db,1,1);
         ContentValues contentValues = new ContentValues();
-        for(int i =0;i<6;i++)
-        {
-            contentValues.put("nombre","corte"+i);
-            contentValues.put("precio","15,00€");
-            db.insert(TABLE_NAME,null,contentValues);
-        }
+
+        contentValues.put("nombre","Corte caballero(+18)");
+        contentValues.put("precio","15,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Corte + barba");
+        contentValues.put("precio","25,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Corte adolescente(12-17)");
+        contentValues.put("precio","13,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Corte militar");
+        contentValues.put("precio","13,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Corte bebés (0-6)");
+        contentValues.put("precio","11,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Corte Jubilados(+65)");
+        contentValues.put("precio","12,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Corte niños(6-12)");
+        contentValues.put("precio","12,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+        contentValues.put("nombre","Rapada(todo al mismo número)");
+        contentValues.put("precio","10,00€");
+        db.insert(TABLE_NAME,null,contentValues);
+
+
     }
 
     public ArrayList<Servicios> getData()
@@ -77,5 +98,16 @@ public class Servicios_DB extends SQLiteOpenHelper {
         {
             return c.getString(0);
         }else return "";
+    }
+
+    public String getPrecio(int id_serv) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT precio FROM servicios WHERE id = ?",new String[]{String.valueOf(id_serv)});
+        if(c.moveToFirst())
+        {
+            return c.getString(0);
+        }
+        return "00,00€";
+
     }
 }

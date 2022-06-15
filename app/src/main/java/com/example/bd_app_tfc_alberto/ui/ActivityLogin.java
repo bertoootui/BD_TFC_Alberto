@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 
 public class ActivityLogin extends AppCompatActivity {
     EditText edtpass, edtemail, edtconfirm;
-    Button butregis, butlogin;
+    Button butregis, butlogin, butback;
     private boolean regis = false;
 
     @Override
@@ -30,7 +30,14 @@ public class ActivityLogin extends AppCompatActivity {
         edtemail = findViewById(R.id.etdEmail);
         butregis = findViewById(R.id.butregister);
         butlogin = findViewById(R.id.butlogin);
+        butback = findViewById(R.id.butbacklogin);
         Login_DB login_db = new Login_DB(getApplicationContext());
+        butback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                regis = false;
+            }
+        });
         butregis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +49,7 @@ public class ActivityLogin extends AppCompatActivity {
                     {
                         edtconfirm.setVisibility(View.VISIBLE);
                         butlogin.setVisibility(View.INVISIBLE);
+                        butback.setVisibility(View.VISIBLE);
                     }
 
 

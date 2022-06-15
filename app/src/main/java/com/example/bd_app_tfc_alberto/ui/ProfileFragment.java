@@ -35,8 +35,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView edtnombre = view.findViewById(R.id.edtnombreP);
-        EditText edtemail = view.findViewById(R.id.edtemailP);
+        EditText edtnombre = view.findViewById(R.id.edtnombreP);
+        TextView edtemail = view.findViewById(R.id.edtemailP);
         EditText edtphone = view.findViewById(R.id.edttlfP);
         EditText edtpass = view.findViewById(R.id.edtpassP);
         EditText edtconpass = view.findViewById(R.id.edtConfirmpassP);

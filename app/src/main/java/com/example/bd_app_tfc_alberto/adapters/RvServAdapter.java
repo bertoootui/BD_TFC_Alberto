@@ -58,7 +58,7 @@ public class RvServAdapter extends RecyclerView.Adapter<RvServAdapter.ViewHolder
                     Toast.makeText(context, "Es necesario escoger un peluquero", Toast.LENGTH_SHORT).show();        
                 }else {
                     config.setServSel(context,position+1);
-                    Fragment fragment = new NewDate2Fragment(email);
+                    Fragment fragment = new NewDate2Fragment(email,(position+1));
                     ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
                 }
             }

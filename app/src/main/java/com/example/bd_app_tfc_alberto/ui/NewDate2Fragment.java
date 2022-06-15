@@ -34,9 +34,10 @@ import java.util.Date;
 
 public class NewDate2Fragment extends Fragment {
     private String email;
+    private int id_serv;
 
-    public NewDate2Fragment(String email) {
-        this.email = email;
+    public NewDate2Fragment(String email, int id_serv) {
+        this.email = email; this.id_serv = id_serv;
     }
 
     @Override
@@ -151,7 +152,7 @@ public class NewDate2Fragment extends Fragment {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(),LinearLayoutManager.HORIZONTAL,false);
                 rvhoras.setLayoutManager(linearLayoutManager);
                 rvhoras.setItemAnimator(new DefaultItemAnimator());
-                RvHorasAdapter rvHorasAdapter = new RvHorasAdapter(getContext(),listatime,txtdias,txtprecio,txthoras,date1[0]);
+                RvHorasAdapter rvHorasAdapter = new RvHorasAdapter(getContext(),listatime,txtdias,txtprecio,txthoras,date1[0],id_serv);
                 rvhoras.setAdapter(rvHorasAdapter);
 
 

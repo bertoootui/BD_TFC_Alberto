@@ -56,11 +56,15 @@ public class Login_DB extends SQLiteOpenHelper {
         boolean regis = false;
         String password1 = md5(password);
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
-        if(email.equals("root")) contentValues.put("type","Usuario");
+        contentValues.put("type","Usuario");
         contentValues.put("email",email);
         contentValues.put("password",password1);
-        db.insert(TABLE_NAME,null,contentValues);
+        if(db.insert(TABLE_NAME,null,contentValues)>0)
+        {
+            regis = true;
+        }
 
         return regis;
     }

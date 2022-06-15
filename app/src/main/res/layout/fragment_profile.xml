@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/edtnombreP"
                 android:layout_width="212dp"
                 android:layout_height="49dp"
@@ -46,9 +46,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edtemailP"
-                android:layout_width="wrap_content"
+                android:layout_width="212dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/shape_txthoras"
@@ -83,7 +83,7 @@
 
             <EditText
                 android:id="@+id/edttlfP"
-                android:layout_width="wrap_content"
+                android:layout_width="212dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/shape_txthoras"

@@ -42,6 +42,25 @@ public class RvEmpAdapter extends RecyclerView.Adapter<RvEmpAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull RvEmpAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.txtemp.setText(listaemp.get(position).getNombre());
+        switch (position)
+        {
+            case 0:
+                holder.imgfoto.setBackgroundResource(R.drawable.empleado0);
+                break;
+            case 1:
+                holder.imgfoto.setBackgroundResource(R.drawable.empleado1);
+                break;
+            case 2:
+                holder.imgfoto.setBackgroundResource(R.drawable.empleado2);
+                break;
+            case 3:
+                holder.imgfoto.setBackgroundResource(R.drawable.empleado3);
+                break;
+            case 4:
+                holder.imgfoto.setBackgroundResource(R.drawable.empleado4);
+                break;
+        }
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
         int cont = 0;
             @Override
