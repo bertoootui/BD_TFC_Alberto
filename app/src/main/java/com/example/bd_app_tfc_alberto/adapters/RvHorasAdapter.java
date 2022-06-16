@@ -82,11 +82,15 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
                         configPreferences.setHoraSel(-1,context);
                         holder.txthoras.setBackgroundResource(R.drawable.shape_txthoras);
                         cont = 0;
+                        txthoras.setText("");
+                        txtprecio.setText("");
+                        txtdias.setText("");
 
                     }
 
                 }else {
                     holder.txthoras.setBackgroundResource(R.drawable.shape_txthoras);
+
 
                 }
 
@@ -115,6 +119,7 @@ public class RvHorasAdapter extends RecyclerView.Adapter<RvHorasAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txthoras = itemView.findViewById(R.id.txtcardhoras);
+
         }
 
 

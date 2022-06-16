@@ -94,7 +94,8 @@ public class NewDate2Fragment extends Fragment {
         time_db.setData();
         RecyclerView rvhoras = view.findViewById(R.id.rvtimes);
         Usuarios_DB usuarios_db = new Usuarios_DB(getContext());
-
+        ConfigPreferences configPreferences = new ConfigPreferences();
+        configPreferences.setHoraSel(-1,getContext());
 
         txtServ.setText(servicio);
         calendarView.setMinDate(calendarView.getDate());

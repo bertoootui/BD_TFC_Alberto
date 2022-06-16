@@ -46,6 +46,7 @@ public class CalendarFragment extends Fragment {
                 RvCalendarAdapter rvCalendarAdapter = new RvCalendarAdapter(getContext(),listacitas[0],getActivity(),email);
                 rvdates.setAdapter(rvCalendarAdapter);
 
+
             }
         });
 
