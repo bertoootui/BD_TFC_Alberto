@@ -11,12 +11,14 @@ public class Citas {
     private String empleado;
 
 
+
     public Citas(int id,String date, String time, String servicio, String empleado) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.servicio = servicio;
         this.empleado = empleado;
+
     }
 
     public int getId() {

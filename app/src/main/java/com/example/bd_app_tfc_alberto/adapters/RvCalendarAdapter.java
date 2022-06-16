@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bd_app_tfc_alberto.R;
 import com.example.bd_app_tfc_alberto.clases.Citas;
 import com.example.bd_app_tfc_alberto.database.Citas_DB;
+import com.example.bd_app_tfc_alberto.database.Servicios_DB;
 import com.example.bd_app_tfc_alberto.ui.CalendarFragment;
 import com.example.bd_app_tfc_alberto.ui.DialogDelete;
 
@@ -56,7 +57,9 @@ public class RvCalendarAdapter extends RecyclerView.Adapter<RvCalendarAdapter.Vi
         holder.txtdia.setText(listacitas.get(position).getDate());
         holder.txthora.setText(listacitas.get(position).getTime());
         holder.txtemp.setText(listacitas.get(position).getEmpleado());
-        holder.txtprecio.setText("15,00€");
+        Servicios_DB servicios_db = new Servicios_DB(context);
+        String precio = servicios_db.getPrecioByName(listacitas.get(position).getServicio());
+        holder.txtprecio.setText(precio);
         holder.txtServicio.setText(listacitas.get(position).getServicio());
         holder.butdelete.setOnClickListener(new View.OnClickListener() {
             @Override

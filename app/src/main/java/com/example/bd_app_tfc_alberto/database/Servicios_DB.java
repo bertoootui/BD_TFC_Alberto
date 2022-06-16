@@ -110,4 +110,14 @@ public class Servicios_DB extends SQLiteOpenHelper {
         return "00,00€";
 
     }
+    public String getPrecioByName(String serv) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT precio FROM servicios WHERE nombre = ?",new String[]{serv});
+        if(c.moveToFirst())
+        {
+            return c.getString(0);
+        }
+        return "00,00€";
+
+    }
 }
